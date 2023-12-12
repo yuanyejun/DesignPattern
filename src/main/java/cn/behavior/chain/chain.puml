@@ -1,0 +1,37 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+' 对原理类图的说明-即(职责链模式的角色及职责)
+'1) Handler : 抽象的处理者, 定义了一个处理请求的接口, 同时含义另外 Handler
+'2) ConcreteHandlerA , B 是具体的处理者, 处理它
+'自己负责的请求， 可以访问它的后继者(即下一个处理者), 如果'
+'可以处理当前请求，则处理，否则就将该请求交个 后继者去处理，从而形成一个职责链
+'3) Request ， 含义很多属性，表示一个
+
+class Request{}
+class Client{}
+
+
+
+
+
+class Handler{
+    - successor:Handler;
+    + processRequest():void
+}
+class ConcreteHandlerA{
+    + processRequest():void
+}
+
+class ConcreteHandlerB{
+    + processRequest():void
+}
+
+ConcreteHandlerA -^ Handler
+ConcreteHandlerB -^ Handler
+
+Handler <|-- Handler
+Client ..> Request
+Client ..> Handler
+
+@enduml

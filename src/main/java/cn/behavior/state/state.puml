@@ -1,0 +1,22 @@
+@startuml
+
+interface State{
+    operation1():void
+    operation2():void
+}
+
+class ConcreteStateA{}
+class ConcreteStateB{}
+
+class Context{
+    - state: State
+    + getState():State
+}
+
+State --|> Context
+
+
+ConcreteStateA -^ State
+ConcreteStateB -^ State
+
+@enduml
